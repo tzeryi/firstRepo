@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
@@ -30,7 +29,7 @@ public class TriangleReportService {
 		stage1.put("value", "stage1");
 		
 		Map<String, String> stage2 = new HashMap<String, String>();
-		stage1.put("value", "stage2");
+		stage2.put("value", "stage2");
  
 		List<Map<String, String>> stages = new ArrayList<Map<String, String>>();
 		stages.add(stage1);
@@ -45,18 +44,18 @@ public class TriangleReportService {
 	@GET
 	@Path("/queryTargetLabels")
 	public Response queryTargetLabels() {
-		Map<String, String> stage1 = new HashMap<String, String>();
-		stage1.put("value", "targetLabel1");
+		Map<String, String> targetLabel1 = new HashMap<String, String>();
+		targetLabel1.put("value", "targetLabel1");
 		
-		Map<String, String> stage2 = new HashMap<String, String>();
-		stage1.put("value", "targetLabel2");
+		Map<String, String> targetLabel2 = new HashMap<String, String>();
+		targetLabel2.put("value", "targetLabel2");
  
-		List<Map<String, String>> stages = new ArrayList<Map<String, String>>();
-		stages.add(stage1);
-		stages.add(stage2);
+		List<Map<String, String>> targetLabels = new ArrayList<Map<String, String>>();
+		targetLabels.add(targetLabel1);
+		targetLabels.add(targetLabel2);
 
 		Gson gson = new Gson();
-		String output = gson.toJson(stages);
+		String output = gson.toJson(targetLabels);
 
 		return Response.status(200).entity(output).build();
 	}

@@ -27,9 +27,11 @@ Ext.define('TriangleReport.store.StageStore', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'StageStore',
+            autoLoad: true,
             model: 'TriangleReport.model.SimpleValueModel',
             proxy: {
                 type: 'rest',
+                url: '../rest/triangleReport/queryStages',
                 reader: {
                     type: 'json'
                 }

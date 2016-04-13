@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config>
+	<columns>
+		<column>
+			<headerText>Non Chart Setting</headerText>
+			<columns>
+				<column>
+					<headerText>UCL</headerText>
+					<dataField>ucl</dataField>
+					<dataType>Number</dataType>
+					<width>100</width>
+					<export>Y</export>
+				</column>
+				<column>
+					<headerText>LCL</headerText>
+					<dataField>lcl</dataField>
+					<dataType>Number</dataType>
+					<width>100</width>
+					<export>Y</export>
+				</column>
+			</columns>
+		</column>
+		<column>
+			<headerText>Item Name</headerText>
+			<dataField>itemName</dataField>
+			<dataType>String</dataType>
+			<width>100</width>
+			<export>N</export>
+		</column>
+	</columns>
+</config>
