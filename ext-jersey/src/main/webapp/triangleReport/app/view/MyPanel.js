@@ -19,9 +19,15 @@ Ext.define('TriangleReport.view.MyPanel', {
 
     requires: [
         'TriangleReport.view.MyPanelViewModel',
-        'Ext.panel.Panel',
         'Ext.form.field.ComboBox',
-        'Ext.button.Button'
+        'Ext.button.Button',
+        'Ext.chart.CartesianChart',
+        'Ext.chart.axis.Category',
+        'Ext.chart.axis.Numeric',
+        'Ext.chart.series.Line',
+        'Ext.chart.interactions.PanZoom',
+        'Ext.chart.Legend',
+        'Ext.XTemplate'
     ],
 
     viewModel: {
@@ -48,7 +54,9 @@ Ext.define('TriangleReport.view.MyPanel', {
                     xtype: 'combobox',
                     padding: '0 20 0 0',
                     fieldLabel: 'Stage',
-                    labelWidth: 60
+                    labelWidth: 60,
+                    displayField: 'value',
+                    store: 'StageStore'
                 },
                 {
                     xtype: 'combobox',
@@ -62,6 +70,87 @@ Ext.define('TriangleReport.view.MyPanel', {
                     text: 'Query Config'
                 }
             ]
+        },
+        {
+            xtype: 'cartesian',
+            flex: 1,
+            colors: [
+                '#115fa6',
+                '#94ae0a',
+                '#a61120',
+                '#ff8809',
+                '#ffd13e',
+                '#a61187',
+                '#24ad9a',
+                '#7c7474',
+                '#a66111'
+            ],
+            store: 'ReportStore',
+            axes: [
+                {
+                    type: 'category',
+                    fields: [
+                        'waferId'
+                    ],
+                    position: 'bottom'
+                },
+                {
+                    type: 'numeric',
+                    fields: [
+                        'ex',
+                        'ey',
+                        'tx',
+                        'ty'
+                    ],
+                    grid: {
+                        odd: {
+                            fill: '#e8e8e8'
+                        }
+                    },
+                    position: 'left'
+                }
+            ],
+            series: [
+                {
+                    type: 'line',
+                    xField: 'waferId',
+                    yField: [
+                        'ex'
+                    ]
+                },
+                {
+                    type: 'line',
+                    xField: 'waferId',
+                    yField: [
+                        'ey'
+                    ]
+                },
+                {
+                    type: 'line',
+                    xField: 'waferId',
+                    yField: [
+                        'tx'
+                    ]
+                }
+            ],
+            interactions: [
+                {
+                    type: 'panzoom'
+                }
+            ],
+            legend: {
+                xtype: 'legend',
+                cls: 'tpl-906y76bl',
+                tpl: [
+                    '<tpl for=".">',
+                    '<div class="myLegendItem" style="float:left;margin:5px;padding:0px;cursor:pointer;">',
+                    '<div class="" style="float:left;margin:2px;width:10px;height: 10px; background:{mark};opacity:.6"></div><div style="float:left;">{name}</div>',
+                    '</div>                    ',
+                    '</tpl>'
+                ],
+                itemSelector: '.myLegendItem',
+                store: 'ReportStore'
+            }
         }
     ]
 

@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import com.google.gson.Gson;
 
 import wuty.vo.ConfigVo;
+import wuty.vo.ReportVo;
 
 @Path("/triangleReport")
 public class TriangleReportService {
@@ -83,6 +84,41 @@ public class TriangleReportService {
 
 		Gson gson = new Gson();
 		String output = gson.toJson(configs);
+
+		return Response.status(200).entity(output).build();
+	}
+
+	@GET
+	@Path("/queryReport")
+	public Response queryReport() {
+		ReportVo report1 = new ReportVo();
+		report1.setWaferId("N123456.01");
+		report1.setEx("1");
+		report1.setEy("1.5");
+		report1.setTx("2");
+		report1.setTy("2.5");
+
+		ReportVo report2 = new ReportVo();
+		report2.setWaferId("N123456.02");
+		report2.setEx("5");
+		report2.setEy("3");
+		report2.setTx("1");
+		report2.setTy("4");
+
+		ReportVo report3 = new ReportVo();
+		report3.setWaferId("N123456.03");
+		report3.setEx("1.1");
+		report3.setEy("1.2");
+		report3.setTx("1.3");
+		report3.setTy("1.4");
+
+		List<ReportVo> reportVos = new ArrayList<ReportVo>();
+		reportVos.add(report1);
+		reportVos.add(report2);
+		reportVos.add(report3);
+
+		Gson gson = new Gson();
+		String output = gson.toJson(reportVos);
 
 		return Response.status(200).entity(output).build();
 	}
